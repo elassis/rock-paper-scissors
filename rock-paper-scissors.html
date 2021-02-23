@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <script>
+            //function that displays the computer choice
+            function computerPlay(){
+                let value =  Math.floor(Math.random() * 3); 
+                
+                let result; 
+
+                if(value == 0) {
+                     result = "rock"; 
+                }else if(value == 1) {
+                    result ="paper";
+                }else{
+                    result = "scissors";  
+                }
+                
+                return result;
+            }
+
+            //function with the loop of 5 rounds of the game
+            function loadGame(){
+                let num1 = 0, num2 = 0;
+                let message;
+                    for(let i = 0; i < 5; i++){
+                        let numbers = game();
+                        num1  += numbers[0];
+                        num2  += numbers[1];
+                        message = numbers[2];
+                        console.log(message);
+                        console.log('user Score: '+num1+' computer: '+num2);                         
+                        
+                    }
+                 
+                 console.log('user total score: '+num1+'\ncomputer total score: '+num2);
+            }
+            //function that play the round and catch the results of each round
+            function game(){ 
+                let selection = prompt("rock, paper or scissors ?");
+                let values = playRound(selection);
+               
+                let user = values[0];                
+                let comp = values[1];
+                let mess = values[2];    
+                return [user, comp, mess];
+            } 
+            //function that throws the winner of each round
+            function playRound(selection,computerSelection){
+                  const USER = selection;
+                  let ul = USER.toLowerCase();
+                  const computer = computerPlay();
+                                let message;
+                                let compScore = 0;
+                                let userScore = 0;
+
+                                if(ul == 'rock' && computer == 'paper'){
+                                    message = 'You lose, paper engulfs rock !';
+                                    compScore = 1;
+                                    userScore = 0;
+                                }
+                                else if(ul == 'rock' && computer == 'scissors'){
+                                    message = 'You Win, rocks destroys scissors !';
+                                    compScore = 0;
+                                    userScore = 1;
+                                }
+                                else if(ul == 'paper' && computer == 'scissors'){
+                                    message = 'You lose, scissors cuts paper !';
+                                    compScore = 1;
+                                    userScore = 0;
+                                }
+                                else if(ul == 'paper' && computer == 'rock'){
+                                    message = 'You Win, paper engulfs rock !';
+                                    compScore = 0;
+                                    userScore = 1;
+                                }
+                                else if(ul == 'scissors' && computer == 'paper'){
+                                    message = 'You Win, scissors cuts paper !';
+                                    compScore = 0;
+                                    userScore = 1;
+                                }
+                                else if(ul == 'scissors' && computer == 'rock'){
+                                    message = 'You lose, rock destroys scissors !';
+                                    compScore = 1;
+                                    userScore = 0;
+                                }
+                                else{
+                                    message = 'Try another option';
+                                }
+
+                                return [userScore, compScore, message];
+                            }
+           
+//execution of the game when the page is refreshing
+           loadGame();
+        </script>
+    </body>
+</html>
